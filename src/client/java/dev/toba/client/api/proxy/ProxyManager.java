@@ -9,7 +9,7 @@ import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.mojang.logging.LogUtils;
-import dev.toba.client.api.utils.HWIDUtil;
+
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
@@ -487,8 +487,9 @@ public final class ProxyManager {
     }
 
     private static SecretKey deriveKey() throws Exception {
+        String username = System.getProperty("user.name", "toba");
         byte[] raw = MessageDigest.getInstance("SHA-256")
-                .digest(("toba-cfg-v1:" + HWIDUtil.getHWID()).getBytes(StandardCharsets.UTF_8));
+                .digest(("toba-cfg-v1:" + username).getBytes(StandardCharsets.UTF_8));
         return new SecretKeySpec(raw, "AES");
     }
 
