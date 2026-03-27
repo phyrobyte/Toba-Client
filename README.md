@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/phyrobyte/Toba-Client/main/docs/toba-banner.png" alt="Toba Client Banner" width="600"/>
-</p>
-
 <h1 align="center">Toba Client</h1>
 
 <p align="center">
@@ -11,7 +7,7 @@
 <p align="center">
   <a href="https://github.com/phyrobyte/Toba-Client/releases"><img src="https://img.shields.io/github/v/release/phyrobyte/Toba-Client?style=flat-square&color=blue" alt="Latest Release"></a>
   <a href="https://github.com/phyrobyte/Toba-Client/blob/main/LICENSE.txt"><img src="https://img.shields.io/github/license/phyrobyte/Toba-Client?style=flat-square" alt="License"></a>
-  <a href="https://discord.gg/Gwe2qJYkUa"><img src="https://img.shields.io/discord/1234567890?style=flat-square&logo=discord&label=Discord&color=5865F2" alt="Discord"></a>
+  <a href="https://discord.gg/Gwe2qJYkUa"><img src="https://img.shields.io/discord/1449763971073835010?style=flat-square&logo=discord&label=Discord&color=5865F2" alt="Discord"></a>
 </p>
 
 ---
