@@ -1,0 +1,121 @@
+plugins {
+    id 'fabric-loom' version '1.15-SNAPSHOT'
+    id 'maven-publish'
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+    archivesName = project.archives_base_name
+}
+
+loom {
+    splitEnvironmentSourceSets()
+
+    mods {
+        "toba" {
+            sourceSet sourceSets.main
+            sourceSet sourceSets.client
+        }
+    }
+
+    runs {
+        client {
+        }
+    }
+
+}
+
+fabricApi {
+    configureDataGeneration {
+        client = true
+    }
+}
+
+repositories {
+    mavenCentral()
+
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    // TODO: Replace with a Maven-published artifact with proper versioning and checksums.
+    // This is a local unvendored JAR — its integrity cannot be verified by the build system.
+    implementation(files("libs/EventManager.jar"))
+
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:0.5.3")))
+
+    include implementation("io.github.spair:imgui-java-binding:${project.imgui_version}")
+    include implementation("io.github.spair:imgui-java-lwjgl3:${project.imgui_version}") {
+        exclude group: "org.lwjgl"
+        exclude group: "org.lwjgl.lwjgl"
+    }
+    include implementation("io.github.spair:imgui-java-natives-windows:${project.imgui_version}")
+    include implementation("io.github.spair:imgui-java-natives-linux:${project.imgui_version}")
+    include implementation("io.github.spair:imgui-java-natives-macos:${project.imgui_version}")
+
+
+    include implementation("org.luaj:luaj-jse:3.0.1")
+    include implementation("io.netty:netty-handler-proxy:4.2.7.Final")
+    include implementation("io.netty:netty-codec-socks:4.2.7.Final")
+}
+
+processResources {
+    inputs.property "version", project.version
+    inputs.property "minecraft_version", project.minecraft_version
+    inputs.property "loader_version", project.loader_version
+    filteringCharset "UTF-8"
+
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version,
+                "minecraft_version": project.minecraft_version,
+                "loader_version": project.loader_version
+    }
+}
+
+def targetJavaVersion = 21
+tasks.withType(JavaCompile).configureEach {
+    it.options.encoding = "UTF-8"
+    if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
+        it.options.release.set(targetJavaVersion)
+    }
+}
+
+java {
+    def javaVersion = JavaVersion.toVersion(targetJavaVersion)
+    if (JavaVersion.current() < javaVersion) {
+        toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
+    }
+    withSourcesJar()
+}
+
+tasks.withType(Jar).configureEach {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+jar {
+    from { zipTree(file("libs/EventManager.jar")) }
+    from("LICENSE") {
+        rename { "${it}_${project.archives_base_name}" }
+    }
+}
+
+publishing {
+    publications {
+        create("mavenJava", MavenPublication) {
+            artifactId = project.archives_base_name
+            from components.java
+        }
+    }
+
+    repositories {
+    }
+}

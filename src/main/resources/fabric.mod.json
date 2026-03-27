@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "toba",
+  "version": "${version}",
+  "name": "Toba",
+  "description": "Toba Client - A Minecraft utility mod",
+  "authors": ["Phyrobyte", "Fogma", "somesable"],
+  "contact": {
+    "homepage": "https://discord.gg/toba",
+    "sources": "https://github.com/Toba-Client/Toba"
+  },
+  "license": "GPL-3.0-only",
+  "environment": "client",
+  "entrypoints": {
+    "fabric-datagen": [
+      "dev.toba.client.api.utils.TobaDataGenerator"
+    ],
+    "client": [
+      "dev.toba.client.TobaClient"
+    ],
+    "main": [
+      "dev.toba.Toba"
+    ]
+  },
+  "mixins": [
+    "toba.mixins.json",
+    {
+      "config": "toba.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}

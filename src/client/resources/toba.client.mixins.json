@@ -1,0 +1,35 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.toba.client.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "GameRendererMixin",
+    "FullbrightMixin",
+    "MouseAccessor",
+    "KeyBindingAccessor",
+    "FreelookCameraMixin",
+    "FreelookMouseMixin",
+    "FreelookHudMixin",
+    "imgui.GameRendererMixin",
+    "imgui.MinecraftMixin",
+    "MinecraftClientMixin",
+    "InventoryHudMixin",
+    "EntityAccessor",
+    "ChatHudMixin",
+    "ChatInputSuggestorMixin",
+    "MouseMixin",
+    "TitleScreenMixin",
+    "ScreenBackgroundMixin",
+    "AllowedAddressResolverMixin",
+    "ClientConnectionMixin",
+    "MultiplayerServerListPingerMixin",
+    "MultiplayerScreenAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}

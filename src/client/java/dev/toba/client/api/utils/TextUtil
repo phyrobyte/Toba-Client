@@ -1,0 +1,15 @@
+/**
+ * @author Fogma
+ * @2026-02-4
+ */
+
+//package dev.toba.client.api.utils;
+//import imgui.ImGui;
+//public class TextUtil {
+//
+//    public static void centerText(String text) {
+//        float windowWidth = ImGui.getWindowWidth();
+//        float textWidth = ImGui.calcTextSize(text).x;
+//        ImGui.setCursorPosX((windowWidth - textWidth) / 2f);
+//    }
+//}
