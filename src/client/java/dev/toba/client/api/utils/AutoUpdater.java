@@ -29,7 +29,7 @@ import java.util.Scanner;
 public class AutoUpdater {
 
     private static final String GITHUB_API_URL =
-            "https://api.github.com/repos/Toba-Client/Toba/releases/latest";
+            "https://api.github.com/repos/phyrobyte/Toba-Client/releases/latest";
     private static final String ALLOWED_DOWNLOAD_HOST = "github.com";
     private static final String ALLOWED_CDN_HOST = "objects.githubusercontent.com";
 

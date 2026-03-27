@@ -7,7 +7,7 @@
   "authors": ["Phyrobyte", "Fogma", "somesable"],
   "contact": {
     "homepage": "https://discord.gg/toba",
-    "sources": "https://github.com/Toba-Client/Toba"
+    "sources": "https://github.com/phyrobyte/Toba-Client"
   },
   "license": "GPL-3.0-only",
   "environment": "client",
